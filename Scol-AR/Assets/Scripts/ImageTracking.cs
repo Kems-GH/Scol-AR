@@ -15,7 +15,6 @@ public class ImageTracking : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(GlobalVariable.periodicTable);
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
         GameObject newPrefab;
 
