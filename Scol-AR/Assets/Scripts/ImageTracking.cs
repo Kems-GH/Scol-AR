@@ -11,18 +11,23 @@ public class ImageTracking : MonoBehaviour
     [SerializeField]
     private GameObject[] placeablePrefab;
 
-    private Dictionary<string, GameObject> spawnedPrefabs = new Dictionary<string, GameObject>();
     private ARTrackedImageManager trackedImageManager;
 
     private void Awake()
     {
+        Debug.Log(GlobalVariable.periodicTable);
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
+        GameObject newPrefab;
 
         foreach(GameObject prefab in placeablePrefab)
         {
-            GameObject newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-            newPrefab.name = prefab.name;
-            spawnedPrefabs.Add(prefab.name, newPrefab);
+            if(!GlobalVariable.listAtom.ContainsKey(prefab.name))
+            {
+                newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+                newPrefab.name = prefab.name;
+                newPrefab.SetActive(false);
+                GlobalVariable.listAtom.Add(prefab.name, newPrefab);
+            }
         }
     }
     private void OnEnable()
@@ -48,7 +53,7 @@ public class ImageTracking : MonoBehaviour
 
         foreach (ARTrackedImage trackedImage in eventArgs.removed)
         {
-            spawnedPrefabs[trackedImage.name].SetActive(false);
+            GlobalVariable.listAtom[trackedImage.name].SetActive(false);
         }
     }
 
@@ -56,16 +61,18 @@ public class ImageTracking : MonoBehaviour
     {
         string name = trackedImage.referenceImage.name;
         Vector3 position = trackedImage.transform.position;
-        GameObject prefab = spawnedPrefabs[name]; 
+        GameObject prefab = GlobalVariable.listAtom[name]; 
 
         if (trackedImage.trackingState == TrackingState.Limited)
         {
             prefab.SetActive(false);
+            GlobalVariable.currentImages.Remove(name);
         }
         else if(trackedImage.trackingState == TrackingState.Tracking)
         {
             prefab.transform.position = position;
             prefab.SetActive(true);
+            GlobalVariable.currentImages.Add(name);
         }
     }
 }
