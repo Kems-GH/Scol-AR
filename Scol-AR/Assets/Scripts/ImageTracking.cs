@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -18,9 +15,9 @@ public class ImageTracking : MonoBehaviour
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
         GameObject newPrefab;
 
-        foreach(GameObject prefab in placeablePrefab)
+        foreach (GameObject prefab in placeablePrefab)
         {
-            if(!GlobalVariable.listAtom.ContainsKey(prefab.name))
+            if (!GlobalVariable.listAtom.ContainsKey(prefab.name))
             {
                 newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
                 newPrefab.name = prefab.name;
@@ -60,14 +57,14 @@ public class ImageTracking : MonoBehaviour
     {
         string name = trackedImage.referenceImage.name;
         Vector3 position = trackedImage.transform.position;
-        GameObject prefab = GlobalVariable.listAtom[name]; 
+        GameObject prefab = GlobalVariable.listAtom[name];
 
         if (trackedImage.trackingState == TrackingState.Limited)
         {
             prefab.SetActive(false);
             GlobalVariable.currentImages.Remove(name);
         }
-        else if(trackedImage.trackingState == TrackingState.Tracking)
+        else if (trackedImage.trackingState == TrackingState.Tracking)
         {
             prefab.transform.position = position;
             prefab.SetActive(true);
