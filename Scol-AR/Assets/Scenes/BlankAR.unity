@@ -480,9 +480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14047fc3577ae4645837bad04bfffbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeablePrefab:
-  - {fileID: 8095705560765346503, guid: 35fbb2a5d9e895a46ad4d760fad2ff07, type: 3}
-  - {fileID: 2577854565952117582, guid: cb05c51cd6475f84c8e04ff5156f3a05, type: 3}
+  placeablePrefab: {fileID: 5192978595083774203, guid: 527d91e490b5576499a8629009e307a7,
+    type: 3}
 --- !u!1001 &6605937321545144057
 PrefabInstance:
   m_ObjectHideFlags: 0

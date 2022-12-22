@@ -6,7 +6,7 @@ using UnityEngine.XR.ARSubsystems;
 public class ImageTracking : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] placeablePrefab;
+    private GameObject placeablePrefab;
 
     private ARTrackedImageManager trackedImageManager;
 
@@ -15,14 +15,14 @@ public class ImageTracking : MonoBehaviour
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
         GameObject newPrefab;
 
-        foreach (GameObject prefab in placeablePrefab)
+        for (int i = 1; i <= GlobalVariable.nb_img; i++)
         {
-            if (!GlobalVariable.listAtom.ContainsKey(prefab.name))
+            if (!GlobalVariable.listAtom.ContainsKey("Element_"+i))
             {
-                newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-                newPrefab.name = prefab.name;
+                newPrefab = Instantiate(placeablePrefab, Vector3.zero, Quaternion.identity);
+                newPrefab.name = "Element_" + i;
                 newPrefab.SetActive(false);
-                GlobalVariable.listAtom.Add(prefab.name, newPrefab);
+                GlobalVariable.listAtom.Add("Element_" + i, newPrefab);
             }
         }
     }
