@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -17,7 +19,7 @@ public class ImageTracking : MonoBehaviour
 
         for (int i = 1; i <= GlobalVariable.nb_img; i++)
         {
-            if (!GlobalVariable.listAtom.ContainsKey("Element_"+i))
+            if (!GlobalVariable.listAtom.ContainsKey("Element_" + i))
             {
                 newPrefab = Instantiate(placeablePrefab, Vector3.zero, Quaternion.identity);
                 newPrefab.name = "Element_" + i;
@@ -26,10 +28,12 @@ public class ImageTracking : MonoBehaviour
             }
         }
     }
+
     private void OnEnable()
     {
         trackedImageManager.trackedImagesChanged += ImageChanged;
     }
+
     private void OnDisable()
     {
         trackedImageManager.trackedImagesChanged -= ImageChanged;
@@ -50,6 +54,7 @@ public class ImageTracking : MonoBehaviour
         foreach (ARTrackedImage trackedImage in eventArgs.removed)
         {
             GlobalVariable.listAtom[trackedImage.name].SetActive(false);
+            GlobalVariable.currentImages.Remove(trackedImage.name);
         }
     }
 
@@ -57,18 +62,20 @@ public class ImageTracking : MonoBehaviour
     {
         string name = trackedImage.referenceImage.name;
         Vector3 position = trackedImage.transform.position;
-        GameObject prefab = GlobalVariable.listAtom[name];
 
         if (trackedImage.trackingState == TrackingState.Limited)
         {
-            prefab.SetActive(false);
+            GlobalVariable.listAtom[name].SetActive(false);
             GlobalVariable.currentImages.Remove(name);
         }
         else if (trackedImage.trackingState == TrackingState.Tracking)
         {
-            prefab.transform.position = position;
-            prefab.SetActive(true);
-            GlobalVariable.currentImages.Add(name);
+            if (!GlobalVariable.currentImages.Contains(name))
+            {
+                GlobalVariable.currentImages.Add(name);
+            }
+            GlobalVariable.listAtom[name].transform.position = position;
+            GlobalVariable.listAtom[name].SetActive(true);
         }
     }
 }
