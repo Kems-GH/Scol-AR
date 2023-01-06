@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -11,6 +12,8 @@ public class ImageTracking : MonoBehaviour
     private GameObject placeablePrefab;
 
     private ARTrackedImageManager trackedImageManager;
+
+    public Text text;
 
     private void Awake()
     {
@@ -62,6 +65,8 @@ public class ImageTracking : MonoBehaviour
     {
         string name = trackedImage.referenceImage.name;
         Vector3 position = trackedImage.transform.position;
+
+        text.text = name;
 
         if (trackedImage.trackingState == TrackingState.Limited)
         {
