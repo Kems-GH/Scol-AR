@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,35 +8,37 @@ public class Atome : MonoBehaviour
 
     private GameObject[] electrons;
     public Text debugText;
-    
+    private int level;
+
     // Start is called before the first frame update
     void Start()
     {
         electrons = new GameObject[nbElectrons];
+        int y = 0;
+        level = 1;
         for (int i = 0; i < nbElectrons; i++)
         {
-            float x = Mathf.Cos(i * 2 * Mathf.PI / nbElectrons) * 0.05f;
-            float z = Mathf.Sin(i * 2 * Mathf.PI / nbElectrons) * 0.05f;
+            int nbElectronsInLevel = (int)(2 * Mathf.Pow(level, 2));
+
+            float x = Mathf.Cos(y * 2 * Mathf.PI / nbElectronsInLevel) * (0.02f+(level * 0.03f));
+            float z = Mathf.Sin(y * 2 * Mathf.PI / nbElectronsInLevel) * (0.02f+(level * 0.03f));
 
             electrons[i] = GameObject.Instantiate(prefabElectron);
-            electrons[i].transform.position = transform.position + new Vector3(x, 0, z );
+            electrons[i].transform.position = transform.position + new Vector3(x, 0, z);
             electrons[i].transform.parent = transform;
+
+            y++;
+
+            if (y >= nbElectronsInLevel)
+            {
+                y = 0;
+                level++;
+            }
         }
-        debugText.text = "electron count: " + electrons.Length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if(nbElectrons != electrons.Length)
-        // {
-        //     electrons = new GameObject[nbElectrons];
-        //     for(int i = 0; i < nbElectrons; i++)
-        //     {
-        //         electrons[i] = prefabElectron;
-        //         electrons[i].transform.position = new Vector3(0.05f, 0.05f, 0.05f);
-        //         electrons[i].transform.parent = transform;
-        //     }
-        // }
     }
 }

@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabElectron: {fileID: 8174203543332808470, guid: b947de6a67fffc946b80d8ed13598084,
     type: 3}
-  nbElectrons: 5
+  nbElectrons: 50
   debugText: {fileID: 0}
 --- !u!1 &8366854673160763295
 GameObject:
