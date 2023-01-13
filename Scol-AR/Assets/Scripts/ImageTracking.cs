@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -13,17 +11,21 @@ public class ImageTracking : MonoBehaviour
 
     private ARTrackedImageManager trackedImageManager;
 
-    public Text text;
-
     private void Awake()
     {
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
         GameObject newPrefab;
 
-        for (int i = 1; i <= GlobalVariable.nb_img; i++)
+        for (int i = 1; i <= GlobalVariable.nb_elt; i++)
         {
             if (!GlobalVariable.listAtom.ContainsKey("Element_" + i))
             {
+                // Créer différents atômes en fonction de la carte
+                // Elément 1 ->  1 électron
+                // Elément 2 ->  4 électrons
+                // Elément 3 ->  7 électrons
+                // Elément 4 ->  8 électrons
+                // Elément 5 -> 92 électrons
                 newPrefab = Instantiate(placeablePrefab, Vector3.zero, Quaternion.identity);
                 newPrefab.name = "Element_" + i;
                 newPrefab.SetActive(false);
@@ -66,8 +68,6 @@ public class ImageTracking : MonoBehaviour
         string name = trackedImage.referenceImage.name;
         Vector3 position = trackedImage.transform.position;
 
-        text.text = name;
-
         if (trackedImage.trackingState == TrackingState.Limited)
         {
             GlobalVariable.listAtom[name].SetActive(false);
@@ -75,12 +75,23 @@ public class ImageTracking : MonoBehaviour
         }
         else if (trackedImage.trackingState == TrackingState.Tracking)
         {
-            if (!GlobalVariable.currentImages.Contains(name))
+            if (name == "Moins")
             {
-                GlobalVariable.currentImages.Add(name);
+                // Appeler la fonction pour enlever un électron
             }
-            GlobalVariable.listAtom[name].transform.position = position;
-            GlobalVariable.listAtom[name].SetActive(true);
+            else if (name == "Plus")
+            {
+                // Appeler la fonction pour ajouter un électron
+            }
+            else
+            {
+                if (!GlobalVariable.currentImages.Contains(name))
+                {
+                    GlobalVariable.currentImages.Add(name);
+                }
+                GlobalVariable.listAtom[name].transform.position = position;
+                GlobalVariable.listAtom[name].SetActive(true);
+            }
         }
     }
 }
