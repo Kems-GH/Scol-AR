@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6403780606793777178}
   - component: {fileID: 8428500451329208427}
   - component: {fileID: 5232739370334054680}
+  - component: {fileID: 5363933472326167475}
   m_Layer: 0
   m_Name: Atome
   m_TagString: Untagged
@@ -70,6 +71,20 @@ MonoBehaviour:
     type: 3}
   nbElectrons: 50
   debugText: {fileID: 0}
+--- !u!114 &5363933472326167475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192978595083774203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c393753274bf46a40a30241e77772c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  root: {fileID: 5192978595083774203}
 --- !u!1 &8366854673160763295
 GameObject:
   m_ObjectHideFlags: 0
