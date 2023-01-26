@@ -4,14 +4,10 @@ using UnityEngine.UI;
 public class Atome : MonoBehaviour
 {
     public GameObject prefabElectron;
-    public int nbElectrons;
 
     private GameObject[] electrons;
-    public Text debugText;
     private int level;
-
-    // Start is called before the first frame update
-    void Start()
+    public void CreateElectrons(int nbElectrons)
     {
         electrons = new GameObject[nbElectrons];
         int y = 0;
@@ -20,25 +16,47 @@ public class Atome : MonoBehaviour
         {
             int nbElectronsInLevel = (int)(2 * Mathf.Pow(level, 2));
 
-            float x = Mathf.Cos(y * 2 * Mathf.PI / nbElectronsInLevel) * (0.02f+(level * 0.03f));
-            float z = Mathf.Sin(y * 2 * Mathf.PI / nbElectronsInLevel) * (0.02f+(level * 0.03f));
+            float x = Mathf.Cos(y * 2 * Mathf.PI / nbElectronsInLevel) * (0.02f + (level * 0.03f));
+            float z = Mathf.Sin(y * 2 * Mathf.PI / nbElectronsInLevel) * (0.02f + (level * 0.03f));
 
             electrons[i] = GameObject.Instantiate(prefabElectron);
             electrons[i].transform.position = transform.position + new Vector3(x, 0, z);
             electrons[i].transform.parent = transform;
 
             y++;
-
             if (y >= nbElectronsInLevel)
             {
                 y = 0;
                 level++;
             }
         }
+        this.UpdateTextNbElectron(nbElectrons);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DestroyElectrons()
     {
+        for (int i=0; i<electrons.Length; i++)
+        {
+            Destroy(electrons[i]);
+        }
+    }
+
+    public void UpdateElectrons(int nbElectrons)
+    {
+        this.DestroyElectrons();
+        this.CreateElectrons(nbElectrons);
+    }
+
+    public int GetNbElectrons()
+    {
+        return this.electrons.Length;
+    }
+
+    public void UpdateTextNbElectron(int nbElectron)
+    {
+        GameObject go = GameObject.FindWithTag("NB electron");
+        TextMesh textMesh = go.GetComponent<TextMesh>();
+
+        textMesh.text = nbElectron.ToString();
     }
 }
