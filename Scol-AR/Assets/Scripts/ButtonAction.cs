@@ -8,6 +8,11 @@ public class ButtonAction: MonoBehaviour
         SceneManager.LoadScene(GlobalVariable.animationToPlay, LoadSceneMode.Single);
     }
 
+    public void ChangeMainScene()
+    {
+        SceneManager.LoadScene("BlankAR", LoadSceneMode.Single);
+    }
+
     public void ResetElectrons()
     {
         foreach(string currentImages in GlobalVariable.currentImages)

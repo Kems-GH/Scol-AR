@@ -38,8 +38,6 @@ public class MovementElectron : MonoBehaviour
         x = new float[electrons.Length];
         y = new float[electrons.Length];
         z = new float[electrons.Length];
-
-        GlobalVariable.listAtom["Element_1"].GetComponent<Atome>().UpdateTextNbElectron(electrons.Length);
     }
 
     void ChangePos()
