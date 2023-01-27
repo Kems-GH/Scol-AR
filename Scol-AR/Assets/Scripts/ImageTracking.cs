@@ -102,7 +102,7 @@ public class ImageTracking : MonoBehaviour
         {
             if (GlobalVariable.currentImages.Count != 0)
             {
-                PlusMoins();
+                PlusMoins(name);
 
                 foreach (string currentImage in GlobalVariable.currentImages)
                 {
@@ -132,7 +132,7 @@ public class ImageTracking : MonoBehaviour
         }
     }
 
-    private void PlusMoins()
+    private void PlusMoins(string name)
     {
         int nbElectrons;
         if (name == "Moins" && nextActionTimeMoins < Time.time)
