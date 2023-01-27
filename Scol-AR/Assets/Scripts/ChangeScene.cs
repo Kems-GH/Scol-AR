@@ -5,7 +5,6 @@ public class ChangeScene : MonoBehaviour
 {
     public void SceneChanger()
     {
-        SceneManager.LoadScene("Fission");
-        Debug.Log("test");
+        SceneManager.LoadScene("BlankAR");
     }
 }
