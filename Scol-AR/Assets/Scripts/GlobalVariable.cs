@@ -8,4 +8,5 @@ public class GlobalVariable
     public static List<string> currentImages = new List<string>();
     public static List<string> moleculeFound = new List<string>();
     public static string animationToPlay;
+    public static int nbElectronsToModif = 1;
 }

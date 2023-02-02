@@ -25,12 +25,12 @@ public class ImageTracking : MonoBehaviour
         {
             if (!GlobalVariable.listAtom.ContainsKey("Element_" + i))
             {
-                // Créer différents atômes en fonction de la carte
-                // Elément 1 ->  1 électron
-                // Elément 2 ->  4 électrons
-                // Elément 3 ->  7 électrons
-                // Elément 4 ->  8 électrons
-                // Elément 5 -> 92 électrons
+                // Crï¿½er diffï¿½rents atï¿½mes en fonction de la carte
+                // Elï¿½ment 1 ->  1 ï¿½lectron
+                // Elï¿½ment 2 ->  4 ï¿½lectrons
+                // Elï¿½ment 3 ->  7 ï¿½lectrons
+                // Elï¿½ment 4 ->  8 ï¿½lectrons
+                // Elï¿½ment 5 -> 92 ï¿½lectrons
                 newPrefab = Instantiate(placeablePrefab, Vector3.zero, Quaternion.identity);
                 switch(i)
                 {
@@ -143,7 +143,7 @@ public class ImageTracking : MonoBehaviour
                 nbElectrons = GlobalVariable.listAtom[currentImage].GetComponent<Atome>().GetNbElectrons();
                 if (nbElectrons > 1)
                 {
-                    GlobalVariable.listAtom[currentImage].GetComponent<Atome>().UpdateElectrons(nbElectrons - 1);
+                    GlobalVariable.listAtom[currentImage].GetComponent<Atome>().UpdateElectrons(nbElectrons - GlobalVariable.nbElectronsToModif);
                     GlobalVariable.listAtom[currentImage].GetComponent<MovementElectron>().Init();
                 }
             }
@@ -154,7 +154,7 @@ public class ImageTracking : MonoBehaviour
             foreach (string currentImage in GlobalVariable.currentImages)
             {
                 nbElectrons = GlobalVariable.listAtom[currentImage].GetComponent<Atome>().GetNbElectrons();
-                GlobalVariable.listAtom[currentImage].GetComponent<Atome>().UpdateElectrons(nbElectrons + 1);
+                GlobalVariable.listAtom[currentImage].GetComponent<Atome>().UpdateElectrons(nbElectrons + GlobalVariable.nbElectronsToModif);
                 GlobalVariable.listAtom[currentImage].GetComponent<MovementElectron>().Init();
             }
         }
