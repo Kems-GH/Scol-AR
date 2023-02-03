@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43913946, g: 0.48732513, b: 0.56798077, a: 1}
+  m_IndirectSpecularColor: {r: 0.43913993, g: 0.4873261, b: 0.56798226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21054,14 +21054,13 @@ GameObject:
   - component: {fileID: 1673261045}
   - component: {fileID: 1673261044}
   - component: {fileID: 1673261043}
-  - component: {fileID: 1673261046}
   m_Layer: 5
   m_Name: return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1673261042
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21126,9 +21125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1673261046}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: SceneChanger
+      - m_Target: {fileID: 1931894336}
+        m_TargetAssemblyTypeName: ButtonAction, Assembly-CSharp
+        m_MethodName: ChangeMainScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21176,18 +21175,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673261041}
   m_CullTransparentMesh: 1
---- !u!114 &1673261046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673261041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f17dc6ebdc749f4d82d2edb853aebc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1701675601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4739179807811475863, guid: bf7ecbf0cc4330b4ab8fb57449907ff8,
@@ -26273,6 +26260,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a2659d948874534487df75d26b9277d, type: 3}
+--- !u!1 &1931894335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2834671785558211180, guid: 7a2659d948874534487df75d26b9277d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1931894334}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1931894336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931894335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b90afe072753d4a852a87cc8442073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 0}
+  ui: {fileID: 0}
+  periodique: {fileID: 0}
+  InputNbElectrons: {fileID: 0}
 --- !u!1 &1933069390
 GameObject:
   m_ObjectHideFlags: 0
