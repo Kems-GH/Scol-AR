@@ -123,12 +123,15 @@ public class ImageTracking : MonoBehaviour
             }
             
 
-            if (!GlobalVariable.currentImages.Contains(name))
+            if(name != "Plus" && name != "Moins")
             {
-                GlobalVariable.currentImages.Add(name);
+                if (!GlobalVariable.currentImages.Contains(name))
+                {
+                    GlobalVariable.currentImages.Add(name);
+                }
+                GlobalVariable.listAtom[name].transform.position = position;
+                GlobalVariable.listAtom[name].SetActive(true);
             }
-            GlobalVariable.listAtom[name].transform.position = position;
-            GlobalVariable.listAtom[name].SetActive(true);
         }
     }
 
