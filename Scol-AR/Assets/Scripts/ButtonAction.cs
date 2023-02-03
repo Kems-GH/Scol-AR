@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,8 @@ public class ButtonAction: MonoBehaviour
 
     public void PlayAnimation()
     {
+        GlobalVariable.listAtom = new Dictionary<string, GameObject>();
+        GlobalVariable.currentImages = new List<string>();
         SceneManager.LoadScene(GlobalVariable.animationToPlay, LoadSceneMode.Single);
     }
 

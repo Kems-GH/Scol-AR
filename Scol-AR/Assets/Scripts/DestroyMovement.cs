@@ -17,6 +17,7 @@ public class DestroyMovement : MonoBehaviour
     public GameObject Particle2;
     public GameObject Particle3;
     public GameObject Particle4;
+    public GameObject ReturnButton;
 
     private void Start()
     {
@@ -77,7 +78,7 @@ public class DestroyMovement : MonoBehaviour
             {
                 if (seconds < 0.52)
                 {
-                    transform.Rotate(new Vector3(0, 0, degreesPerSecond) * Time.deltaTime);
+                    transform.Rotate(new Vector3(degreesPerSecond, 0, 0) * Time.deltaTime);
                 }
             }
         }
@@ -94,7 +95,7 @@ public class DestroyMovement : MonoBehaviour
             {
                 if (seconds < 0.52)
                 {
-                    transform.Rotate(new Vector3(0, 0, degreesPerSecond) * Time.deltaTime);
+                    transform.Rotate(new Vector3(0, degreesPerSecond, 0) * Time.deltaTime);
                 }
             }
 
@@ -108,6 +109,7 @@ public class DestroyMovement : MonoBehaviour
             SphereObject4.SetActive(true);
             SphereObject4.transform.position += Vector3.left * 3 * Time.deltaTime;
             SphereObject4.transform.position += Vector3.up * 3 * Time.deltaTime;
+            ReturnButton.SetActive(true);
 
             if (seconds > 0.40)
             {
